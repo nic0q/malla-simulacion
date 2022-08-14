@@ -292,7 +292,7 @@
   },{
     "nombre": "Trabajo de Titulación",
     "abrev": "13343",
-    "prereq": ["Seminario de Informática", "Aprendizaje Automático", "Electivo 2", "Gorbernanza y Gestión TI"],
+    "prereq": ["Seminario de Informática", "Aprendizaje Automático", "Electivo 2", "Gobernanza y Gestión TI"],
     "nivel": "11"
   }
 ]

@@ -26,24 +26,36 @@ function convertToRoman(num) {
   }
   return str;
 }
-const get_disponibles = (nombre) => {
-  return Ramos.filter(ramo => ramo.prereq.includes(nombre)).map(ramo => ramo.nombre)
+// I: Arreglo de ramos aprobados (hook), Nombre del ramo actual
+// O: Arreglo de ramos disponibles para el ramo actual
+// Funcion que obtiene los ramos disponibles (Que pueden ser tomados) para el ramo actual
+const get_disponibles = (aprobados, nombre) => {
+  const disp = []
+  Ramos.filter(ramo => ramo.prereq.includes(nombre)).filter(ramo => isSubset(aprobados,ramo.prereq)).map(ramo => disp.push(ramo.nombre))
+  return disp
 }
-const isSubset = (array1, array2) => array2.every((element) => array1.includes(element));
+// I: arreglo1, arreglo2
+// O: true si arreglo2 es un subconjunto de arreglo1
+// Funion que determina si arreglo 1 es subconjunto de arreglo2 (Se encuentran todos sus elementos)
+const isSubset = (array1, array2) => {
+  return array2.every((element) => array1.includes(element))}
+
 export default function Malla(){
   const [ramos, set_ramos] = useState(false)
   const [disponibles, set_disponibles] = useState([])
   const [aprobados, set_aprobados] = useState([])
+
   const ramo_click = (ramo) => {
     set_ramos(!ramos)
-    set_aprobados([...aprobados, ramo.nombre])
-    set_disponibles(disponibles.concat(get_disponibles(ramo.nombre)))
-    // console.log(aprobados)
+    if(isSubset(aprobados,ramo.prereq))
+      set_aprobados((aprov)=>{
+        set_disponibles((disp)=>disp.concat(get_disponibles([...aprov, ramo.nombre], ramo.nombre)))
+        return [...aprov, ramo.nombre]})
   }
   const Nivel = ({nivel}) =>{
     const nivel_click = (nivel) => {
       set_ramos(!ramos)
-      // console.log(Ramos.filter(ramo => ramo.nivel === nivel))
+      console.log(Ramos.filter(ramo => ramo.nivel === nivel).map(ramo => ramo_click(ramo)))
       
     }
     return <div className="flex flex-col items-center text-center align-middle">
