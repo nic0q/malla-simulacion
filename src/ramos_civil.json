@@ -144,7 +144,7 @@
   {
     "nombre": "Inglés 3",
     "abrev": "10132",
-    "tipo": "MBI",
+    "tipo": "ING",
     "prereq": ["Inglés 2"],
     "nivel": "5"
   },{
@@ -180,7 +180,7 @@
   },
   {
     "nombre": "Inglés 4",
-    "tipo": "MBI",
+    "tipo": "ING",
     "abrev": "10133",
     "prereq": ["Inglés 3"],
     "nivel": "6"
