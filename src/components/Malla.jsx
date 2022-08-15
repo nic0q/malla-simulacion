@@ -3,33 +3,37 @@ import { useState } from "react";
 import BotonNivel from "./BotonNivel.jsx";
 import Ramo from "./Ramo.jsx"
 import BotonAnio from "./BotonAnio";
+import AvanceCarrera from "./AvanceCarrera";
 
-// I: Arreglo de ramos_civil aprobados (hook), Nombre del ramo actual
-// O: Arreglo de ramos_civil disponibles para el ramo actual
+const COLORES_TIPO = {
+  'MBI': 'bg-blue-500',
+  'INF-BDD': 'bg-green-300',
+  'INF': 'bg-green-400',
+  'ELE': 'bg-red-400',
+  'TOP': 'bg-purple-500',
+  'OPC': 'bg-yellow-400',
+}
+// const COLORES_ESTADO = {
+//   'DISP': "bg-yellow-500",
+//   'APRO': "bg-green-400",
+// }
 // Funcion que obtiene los ramos_civil disponibles (Que pueden ser tomados) para el ramo actual
 const get_disponibles = (aprobados, nombre) => {
   const disp = []
   ramos_civil.filter(ramo => ramo.prereq.includes(nombre)).filter(ramo => is_subset(aprobados,ramo.prereq)).map(ramo => disp.push(ramo.nombre))
   return disp
 }
-const get_ramos_afectados = (nombre) => {
-  let name = [nombre]
-  let acum = []
-  let prereq = []
-  let i = 0
-  while(i < 5){
-    prereq = name.map(el => ramos_civil.filter(ramo => ramo.prereq.includes(el))).flat().map(ramo => ramo.nombre)
-    name = prereq
-    acum = acum.concat(prereq)
-    i++
+// Función que obtiene todos los ramos afectados a raíz de uno (concepo de transitividad)
+const get_ramos_afectados = (ramo_inicio) => {
+  let name = [ramo_inicio], acum = []
+  while(name.length){ // Mientras haya ramos afectados
+    name = name.map(el => ramos_civil.filter(ramo => ramo.prereq.includes(el))).flat().map(ramo => ramo.nombre)
+    acum = acum.concat(name)
   }
   return acum
 }
-// I: arreglo1, arreglo2
-// O: true si arreglo2 es un subconjunto de arreglo1
-// Funion que determina si arreglo 1 es subconjunto de arreglo2 (Se encuentran todos sus elementos)
+// Funcion que determina si arreglo 1 es subconjunto de arreglo2 (Se encuentran todos sus elementos)
 const is_subset = (array1, array2) => array2.every((element) => array1.includes(element))
-
 // Función que actualiza los ramos disponnibles en la malla en caso de seleccione o deseleccione un recuadro
 const update_disponibles = (aprov, ramo, disp) => {
   if(is_subset(disp,get_disponibles([...aprov, ramo.nombre], ramo.nombre))){ // Si los ramos que se quiere agregar ya se encuentran mostrandose en la malla se eliminan de la lista de disponibles
@@ -47,12 +51,14 @@ const update_aprobados = (aprov, ramo) => {
 export default function Malla(){
   const [disponibles, set_disponibles] = useState([])
   const [aprobados, set_aprobados] = useState([])
+  // Funcion que actualiza la malla al hacer click en un ramo, ya se aprobando un ramo y abriendo ramos a raiz de la aprobacion
   const ramo_click = (ramo) => {
     if(is_subset(aprobados,ramo.prereq))
       set_aprobados((aprov)=>{
         set_disponibles((disp)=>update_disponibles(aprov, ramo, disp))
         return update_aprobados(aprov, ramo)})
   }
+  // Función que actualiza el nivel entero de la malla, utilizando la función de ramo_click
   const nivel_click = (nivel) => {
     ramos_civil.filter(ramo => ramo.nivel === nivel).map(ramo => ramo_click(ramo))
   }
@@ -63,32 +69,35 @@ export default function Malla(){
   }
   const Nivel = ({nivel}) =>{
     return <div>
-      <BotonNivel handleClick={()=>nivel_click (nivel)} nivel = {nivel}></BotonNivel>
+      <BotonNivel handleClick={()=>nivel_click (nivel)} nivel = {nivel}/>
       {ramos_civil.map(ramo => {
       return ramo.nivel === nivel ?
         <Ramo
           handleClick = {()=>ramo_click(ramo)}
           key = {ramo.abrev}
-          color = {aprobados.includes(ramo.nombre) ? "aprobado": disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "disponible" : "no_disponible"}
+          tipo = {COLORES_TIPO[ramo.tipo] || "bg-white-500"}
+          estado = {aprobados.includes(ramo.nombre) ? "blur-sm": disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "blur-xl" : ""}
           abrev = {ramo.abrev}
-          name={ramo.nombre}>
-        </Ramo>
+          name={ramo.nombre}/>
       : ""})}
     </div>
   }
-  return <div className="flex col text-center align-middle justify-center">
+  return <div>
+  <div className="flex col text-center align-middle justify-center">
     {Array(11).fill().map((_, nivel) => { nivel = nivel + 1
       return <div key = {nivel.toString()}>
         {(nivel+1)%2 === 0 ?
         <div>
           <br></br>
-          <BotonAnio handleClick={()=>anio_click(nivel.toString())} año = {(((nivel-1)/2)+1)}></BotonAnio>
+          <BotonAnio handleClick={()=>anio_click(nivel.toString())} año = {(((nivel-1)/2)+1)}/>
         </div>
         :<br></br>}
         <br></br>
-        <Nivel nivel={nivel.toString()}></Nivel>
+        <Nivel nivel={nivel.toString()}/>
       </div>
       })
-      }
-  </div>
+    }
+    </div>
+    <AvanceCarrera n_aprobadas={aprobados.length} n_total={ramos_civil.length}/>  
+    </div>
 }

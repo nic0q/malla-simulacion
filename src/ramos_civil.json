@@ -1,119 +1,142 @@
 [
   {
     "nombre": "Cálculo 1",
+    "tipo": "MBI",
     "abrev": "10138",
     "prereq": [],
     "nivel": "1"
   },{
     "nombre": "Álgebra 1",
+    "tipo": "MBI",
     "abrev": "10139",
     "prereq": [],
     "nivel": "1"
   },{
     "nombre": "Física 1",
+    "tipo": "MBI",
     "abrev": "10140",
     "prereq": [],
     "nivel": "1"
   },{
     "nombre": "Introducción al Diseño en Ingeniería",
+    "tipo": "MBI",
     "abrev": "10141",
     "prereq": [],
     "nivel": "1"
   },{
     "nombre": "Ingeniería y Sustentabilidad",
+    "tipo": "INF",
     "abrev": "13300",
     "prereq": [],
     "nivel": "1"
   },
   {
     "nombre": "Cálculo 2",
+    "tipo": "MBI",
     "abrev": "10142",
     "prereq": ["Cálculo 1"],
     "nivel": "2"
   },{
     "nombre": "Álgebra 2",
+    "tipo": "MBI",
     "abrev": "10143",
     "prereq": ["Álgebra 1"],
     "nivel": "2"
   },{
     "nombre": "Física 2",
+    "tipo": "MBI",
     "abrev": "10144",
     "prereq": ["Física 1"],
     "nivel": "2"
   },{
     "nombre": "Fundamentos de Programación",
+    "tipo": "MBI",
     "abrev": "10145",
     "prereq": ["Introducción al Diseño en Ingeniería"],
     "nivel": "2"
   },{
     "nombre": "Introducción a la Ingeniería Informática",
+    "tipo": "INF",
     "abrev": "13301",
     "prereq": ["Introducción al Diseño en Ingeniería"],
     "nivel": "2"
   },{
     "nombre": "Fundamentos de Computación",
+    "tipo": "INF",
     "abrev": "13302",
     "prereq": ["Introducción al Diseño en Ingeniería"],
     "nivel": "2"
   },
   {
     "nombre": "Inglés 1",
+    "tipo": "MBI",
     "abrev": "10130",
     "prereq": [],
     "nivel": "3"
   },{
     "nombre": "Fundamentos de Economía",
+    "tipo": "MBI",
     "abrev": "10147",
     "prereq": ["Cálculo 1"],
     "nivel": "3"
   },{
     "nombre": "Cálculo y Optimización Multivariable",
+    "tipo": "MBI",
     "abrev": "13303",
     "prereq": ["Cálculo 2"],
     "nivel": "3"
   },{
     "nombre": "Estructura de Datos",
+    "tipo": "INF",
     "abrev": "13304",
     "prereq": ["Fundamentos de Programación", "Fundamentos de Computación"],
     "nivel": "3"
   },{
     "nombre": "Electricidad y Magnetismo",
+    "tipo": "INF",
     "abrev": "13305",
     "prereq": ["Cálculo 2", "Física 2"],
     "nivel": "3"
   },{
     "nombre": "Diseño de Algoritmos",
+    "tipo": "INF",
     "abrev": "13306",
     "prereq": ["Introducción a la Ingeniería Informática" , "Fundamentos de Computación"],
     "nivel": "3"
   },
   {
     "nombre": "Inglés 2",
+    "tipo": "MBI",
     "abrev": "10131",
     "prereq": ["Inglés 1"],
     "nivel": "4"
   },{
     "nombre": "Taller de Diseño en Ingeniería",
+    "tipo": "MBI",
     "abrev": "10148",
     "prereq": ["Fundamentos de Economía"],
     "nivel": "4"
   },{
     "nombre": "Ecuaciones Diferenciales y Métodos Numéricos",
+    "tipo": "MBI",
     "abrev": "13307",
     "prereq": ["Cálculo y Optimización Multivariable", "Fundamentos de Programación"],
     "nivel": "4"
   },{
     "nombre": "Diseño de Bases de Datos",
+    "tipo": "INF-BDD",
     "abrev": "13308",
     "prereq": ["Álgebra 2", "Fundamentos de Computación"],
     "nivel": "4"
   },{
     "nombre": "Arquitectura de Computadores",
+    "tipo": "INF",
     "abrev": "13309",
     "prereq": ["Electricidad y Magnetismo", "Fundamentos de Computación"],
     "nivel": "4"
   },{
     "nombre": "Paradigmas de Programación",
+    "tipo": "INF",
     "abrev": "13310",
     "prereq": ["Estructura de Datos", "Diseño de Algoritmos"],
     "nivel": "4"
@@ -121,176 +144,211 @@
   {
     "nombre": "Inglés 3",
     "abrev": "10132",
+    "tipo": "MBI",
     "prereq": ["Inglés 2"],
     "nivel": "5"
   },{
     "nombre": "Estadística Computacional",
+    "tipo": "INF",
     "abrev": "13311",
     "prereq": ["Cálculo y Optimización Multivariable", "Fundamentos de Programación"],
     "nivel": "5"
   },{
     "nombre": "Teoría de la Computación",
+    "tipo": "INF",
     "abrev": "13312",
     "prereq": ["Estructura de Datos", "Diseño de Algoritmos"],
     "nivel": "5"
   },{
     "nombre": "Sistemas Operativos",
+    "tipo": "INF",
     "abrev": "13313",
     "prereq": ["Arquitectura de Computadores", "Ingeniería y Sustentabilidad"],
     "nivel": "5"
   },{
     "nombre": "Fundamentos de Ingeniería de Software",
+    "tipo": "INF",
     "abrev": "13314",
     "prereq": ["Paradigmas de Programación"],
     "nivel": "5"
   },{
     "nombre": "Taller de Programación",
+    "tipo": "INF",
     "abrev": "13315",
     "prereq": ["Paradigmas de Programación"],
     "nivel": "5"
   },
   {
     "nombre": "Inglés 4",
+    "tipo": "MBI",
     "abrev": "10133",
     "prereq": ["Inglés 3"],
     "nivel": "6"
   },{
     "nombre": "Estadística Inferencial",
+    "tipo": "INF",
     "abrev": "13316",
     "prereq": ["Estadística Computacional", "Inglés 2"],
     "nivel": "6"
   },{
     "nombre": "Bases de Datos Avanzadas",
+    "tipo": "INF-BDD",
     "abrev": "13317",
     "prereq": ["Diseño de Bases de Datos", "Sistemas Operativos"],
     "nivel": "6"
   },{
     "nombre": "Procesamiento de Señales e Imágenes",
+    "tipo": "INF",
     "abrev": "13318",
     "prereq": ["Paradigmas de Programación"],
     "nivel": "6"
   },{
     "nombre": "Técnicas de Ingeniería de Software",
+    "tipo": "INF",
     "abrev": "13319",
     "prereq": ["Diseño de Bases de Datos", "Fundamentos de Ingeniería de Software"],
     "nivel": "6"
   },{
     "nombre": "Evaluación de Proyectos",
+    "tipo": "MBI",
     "abrev": "13320",
     "prereq": ["Fundamentos de Economía", "Taller de Diseño en Ingeniería"],
     "nivel": "6"
   },{
     "nombre": "Modelos y Simulación",
+    "tipo": "INF",
     "abrev": "13321",
     "prereq": ["Estadística Inferencial", "Ecuaciones Diferenciales y Métodos Numéricos"],
     "nivel": "7"
   },{
     "nombre": "Métodos de Optimización",
+    "tipo": "INF",
     "abrev": "13322",
     "prereq": ["Teoría de la Computación", "Cálculo y Optimización Multivariable"],
     "nivel": "7"
   },{
     "nombre": "Redes de Comunicación",
+    "tipo": "INF",
     "abrev": "13323",
     "prereq": ["Procesamiento de Señales e Imágenes", "Sistemas Operativos"],
     "nivel": "7"
   },{
     "nombre": "Gestión de Proyectos TI",
+    "tipo": "INF",
     "abrev": "13324",
     "prereq": ["Evaluación de Proyectos", "Fundamentos de Ingeniería de Software"],
     "nivel": "7"
   },{
     "nombre": "Innovación y Emprendimiento",
+    "tipo": "INF",
     "abrev": "13325",
     "prereq": ["Evaluación de Proyectos", "Taller de Programación"],
     "nivel": "7"
   },{
     "nombre": "Formación Integral 1",
+    "tipo": "OPC",
     "abrev": "13326",
     "prereq": ["Inglés 3"],
     "nivel": "7"
   },{
     "nombre": "Análisis de Datos",
+    "tipo": "INF",
     "abrev": "13327",
     "prereq": ["Modelos y Simulación", "Métodos de Optimización"],
     "nivel": "8"
   },{
     "nombre": "Ciberseguridad",
+    "tipo": "INF",
     "abrev": "13328",
     "prereq": ["Redes de Comunicación", "Inglés 4"],
     "nivel": "8"
   },{
     "nombre": "Sistemas Distribuidos y Paralelos",
+    "tipo": "INF",
     "abrev": "13329",
     "prereq": ["Redes de Comunicación", "Bases de Datos Avanzadas"],
     "nivel": "8"
   },{
     "nombre": "Gestión de Empresas TI",
+    "tipo": "INF",
     "abrev": "13330",
     "prereq": ["Gestión de Proyectos TI"],
     "nivel": "8"
   },{
     "nombre": "Proyecto de Ingeniería de Software",
+    "tipo": "INF",
     "abrev": "13331",
     "prereq": ["Bases de Datos Avanzadas", "Técnicas de Ingeniería de Software"],
     "nivel": "8"
   },{
     "nombre": "Formación Integral 2",
+    "tipo": "OPC",
     "abrev": "13332",
     "prereq": ["Inglés 4"],
     "nivel": "8"
   },{
     "nombre": "Aprendizaje Automático",
+    "tipo": "INF",
     "abrev": "13333",
     "prereq": ["Análisis de Datos"],
     "nivel": "9"
   },{
     "nombre": "Tópico de Especialidad 1",
+    "tipo": "TOP",
     "abrev": "13334",
     "prereq": ["Modelos y Simulación", "Métodos de Optimización"],
     "nivel": "9"
   },{
     "nombre": "Tópico de Especialidad 2",
+    "tipo": "TOP",
     "abrev": "13335",
     "prereq": ["Redes de Comunicación", "Gestión de Proyectos TI", "Innovación y Emprendimiento"],
     "nivel": "9"
   },{
     "nombre": "Gobernanza y Gestión TI",
+    "tipo": "INF",
     "abrev": "13336",
     "prereq": ["Gestión de Empresas TI", "Ciberseguridad"],
     "nivel": "9"
   },{
     "nombre": "Electivo 1",
+    "tipo": "ELE",
     "abrev": "13337",
     "prereq": ["Modelos y Simulación", "Métodos de Optimización"],
     "nivel": "9"
   },{
     "nombre": "Seminario de Informática",
+    "tipo": "INF",
     "abrev": "13338",
     "prereq": ["Electivo 1", "Formación Integral 1", "Formación Integral 2"],
     "nivel": "10"
   },{
     "nombre": "Tópico de Especialidad 3",
+    "tipo": "TOP",
     "abrev": "13339",
     "prereq": ["Tópico de Especialidad 1"],
     "nivel": "10"
   },{
     "nombre": "Tópico de Especialidad 4",
+    "tipo": "TOP",
     "abrev": "13340",
     "prereq": ["Tópico de Especialidad 2"],
     "nivel": "10"
   },{
     "nombre": "Electivo Disciplinario",
+    "tipo": "ELE",
     "abrev": "13341",
     "prereq": ["Proyecto de Ingeniería de Software", "Formación Integral 2"],
     "nivel": "10"
   },{
     "nombre": "Electivo 2",
+    "tipo": "ELE",
     "abrev": "13342",
     "prereq": ["Electivo 1"],
     "nivel": "10"
   },{
     "nombre": "Trabajo de Titulación",
+    "tipo": "INF",
     "abrev": "13343",
     "prereq": ["Seminario de Informática", "Aprendizaje Automático", "Electivo 2", "Gobernanza y Gestión TI"],
     "nivel": "11"
