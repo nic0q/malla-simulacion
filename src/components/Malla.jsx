@@ -6,25 +6,26 @@ import BotonAnio from "./BotonAnio";
 import AvanceCarrera from "./AvanceCarrera";
 
 const COLORFULL_TYPES = {
-  'MBI': 'blue-500',
-  'ING': 'blue-600',
-  'INF-BDD': 'green-300',
-  'INF': 'green-400',
-  'ELE': 'red-400',
-  'TOP': 'purple-500',
-  'OPC': 'yellow-400',
+  'MBI': 'bg-blue-500',
+  'ING': 'bg-blue-600',
+  'INF-BDD': 'bg-green-300',
+  'INF': 'bg-green-400',
+  'ELE': 'bg-red-400',
+  'TOP': 'bg-purple-500',
+  'OPC': 'bg-yellow-400',
 }
 const NORMAL_COLORS = {
-  'DISP': "yellow-500",
-  'APRO': "green-500",
+  'DISP': "bg-yellow-500",
+  'APRO': "bg-green-500",
+  'PEND': "bg-gray-300",
 }
 const PRIDE_COLORS = {
-  1:'[#5D308F]',
-  2:'[#1281D0]',
-  3:'[#59B665]',
-  4:'[#EBE51F]',
-  5:'[#F08F1E]',
-  6:'[#D61E1E]'
+  1:'bg-[#5D308F]',
+  2:'bg-[#1281D0]',
+  3:'bg-[#59B665]',
+  4:'bg-[#EBE51F]',
+  5:'bg-[#F08F1E]',
+  6:'bg-[#D61E1E]'
 }
 // const COLORES_ESTADO = {
 //   'DISP': "bg-yellow-500",
@@ -81,11 +82,10 @@ export default function Malla(){
     nivel_click(anioa[0])
     nivel_click(anioa[1])
   }
-  const get_estado_ramo = (ramo, nombre, aprobados, disponibles) =>{
-    if(aprobados.includes(nombre)) return NORMAL_COLORS["APRO"]
-    if(disponibles.includes(nombre) || !ramo.prereq.length) return NORMAL_COLORS["DISP"]
+  const get_estado_ramo = (ramo, aprobados, disponibles) =>{
+    if(aprobados.includes(ramo.nombre)) return NORMAL_COLORS["APRO"]
+    if(disponibles.includes(ramo.nombre) || !ramo.prereq.length) return NORMAL_COLORS["DISP"]
   }
-  
   const Nivel = ({nivel}) =>{
     return <div>
       <BotonNivel handleClick={()=>nivel_click (nivel)} nivel = {nivel}/>
@@ -95,18 +95,29 @@ export default function Malla(){
           handleClick = {()=>ramo_click(ramo)}
           key = {ramo.abrev}
           // aprobados.includes(ramo.nombre) ? "bg-green-300": disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white" : "opacity-60"
-          tipo = {colorfull=== 0 ?(COLORFULL_TYPES[ramo.tipo]) : colorfull === 1 ?  get_estado_ramo(ramo, ramo.nombre, aprobados, disponibles) || "[#EBEBEB]" : nivel%2 ===0 ?  PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)]}
+          tipo = {colorfull === 0 ?
+            (COLORFULL_TYPES[ramo.tipo]) :
+              colorfull === 1 ? (get_estado_ramo(ramo, aprobados, disponibles) || NORMAL_COLORS["PEND"]) :
+                colorfull === 2 ? (nivel % 2 === 0 ? PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)])
+                : ""}
           // tipo = {nivel%2 ===0 ?  PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)]}
-          estado = {aprobados.includes(ramo.nombre) ? `shadow-2xl shadow-indigo-400 text-white`: disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white opacity-80" : "opacity-30"}
+          estado = {
+            colorfull === 0 || colorfull === 2 ?
+              aprobados.includes(ramo.nombre) ? `shadow-xl shadow-indigo-500 text-white`: disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white opacity-80" : "  "
+            : ""}
           abrev = {ramo.abrev}
-          name={ramo.nombre}/>
-      : ""})}
+          name={ramo.nombre}/> : ""})
+      }
     </div>
   }
   return <div>
-    <div className="text-white flex justify-end" onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state+1})}>
-      <button className=" border-2 border-white p-2">
-        Cambiar Aspecto {{0:"Verbose 🗣️",1:"Skin Normal 📘",2: "🌈"}[colorfull]}
+    <div className="text-white flex justify-end" onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state + 1})}>      
+      <button className="">
+      Cambiar aspecto
+      <div className="border-2 border-white p-1 hover:bg-white hover:text-black">
+        {{0:"Verbose 🗣️",1:"LOA 📘",2: "Pride 🌈"}[colorfull]}
+      </div>
+      
       </button>
     </div>
   <div className="flex col text-center align-middle justify-center">
