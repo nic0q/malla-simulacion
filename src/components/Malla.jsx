@@ -14,6 +14,7 @@ const COLORFULL_TYPES = {
   'TOP': 'bg-purple-500',
   'OPC': 'bg-yellow-400',
 }
+
 const NORMAL_COLORS = {
   'DISP': "bg-yellow-500",
   'APRO': "bg-green-500",
@@ -23,14 +24,25 @@ const PRIDE_COLORS = {
   1:'bg-[#5D308F]',
   2:'bg-[#1281D0]',
   3:'bg-[#59B665]',
-  4:'bg-[#EBE51F]',
+  4:'bg-[#EBE51F] text-black',
   5:'bg-[#F08F1E]',
   6:'bg-[#D61E1E]'
 }
+
+const VERBOSE = 0
+const LOA = 1
+const PRIDE = 2
+/* No estoy seguro si es una mejor practica hacer un diccionario o hacer constantes como en C
+// const SKIN_TYPES = {
+//   VERBOSE: 0,
+//   LOA: 1,
+//   PRIDE: 2,
+// }
 // const COLORES_ESTADO = {
 //   'DISP': "bg-yellow-500",
 //   'APRO': "bg-green-400",
 // }
+*/
 // Funcion que obtiene los ramos_civil disponibles (Que pueden ser tomados) para el ramo actual
 const get_disponibles = (aprobados, nombre) => {
   const disp = []
@@ -95,17 +107,18 @@ export default function Malla(){
           handleClick = {()=>ramo_click(ramo)}
           key = {ramo.abrev}
           // aprobados.includes(ramo.nombre) ? "bg-green-300": disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white" : "opacity-60"
-          tipo = {colorfull === 0 ?
+          tipo = {colorfull === VERBOSE ?
             (COLORFULL_TYPES[ramo.tipo]) :
-              colorfull === 1 ? (get_estado_ramo(ramo, aprobados, disponibles) || NORMAL_COLORS["PEND"]) :
-                colorfull === 2 ? (nivel % 2 === 0 ? PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)])
+              colorfull === LOA ? (get_estado_ramo(ramo, aprobados, disponibles) || NORMAL_COLORS["PEND"]) :
+                colorfull === PRIDE ? (nivel % 2 === 0 ? PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)])
                 : ""}
           // tipo = {nivel%2 ===0 ?  PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)]}
           estado = {
             colorfull === 0 || colorfull === 2 ?
-              aprobados.includes(ramo.nombre) ? `shadow-xl shadow-indigo-500 text-white`: disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white opacity-80" : "  "
+              aprobados.includes(ramo.nombre) ? `shadow-xl shadow-indigo-500 text-white`: disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white" : "opacity-60"
             : ""}
           abrev = {ramo.abrev}
+          aprob = {aprobados.includes(ramo.nombre) && colorfull !== LOA ? true : false}
           name={ramo.nombre}/> : ""})
       }
     </div>
@@ -121,7 +134,7 @@ export default function Malla(){
       </button>
     </div>
   <div className="flex col text-center align-middle justify-center">
-    {Array(11).fill().map((_, nivel) => { nivel = nivel + 1
+    {Array(11).fill().map((_,nivel) => { nivel = nivel + 1
       return <div key = {nivel.toString()}>
         {(nivel+1)%2 === 0 ?
         <div>
