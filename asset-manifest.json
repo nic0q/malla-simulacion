@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/malla-simulacion/static/css/main.be673b77.css",
-    "main.js": "/malla-simulacion/static/js/main.bcadc800.js",
+    "main.css": "/malla-simulacion/static/css/main.ad052ac2.css",
+    "main.js": "/malla-simulacion/static/js/main.dda2f831.js",
     "static/js/787.ddc39446.chunk.js": "/malla-simulacion/static/js/787.ddc39446.chunk.js",
     "index.html": "/malla-simulacion/index.html",
-    "main.be673b77.css.map": "/malla-simulacion/static/css/main.be673b77.css.map",
-    "main.bcadc800.js.map": "/malla-simulacion/static/js/main.bcadc800.js.map",
+    "main.ad052ac2.css.map": "/malla-simulacion/static/css/main.ad052ac2.css.map",
+    "main.dda2f831.js.map": "/malla-simulacion/static/js/main.dda2f831.js.map",
     "787.ddc39446.chunk.js.map": "/malla-simulacion/static/js/787.ddc39446.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.be673b77.css",
-    "static/js/main.bcadc800.js"
+    "static/css/main.ad052ac2.css",
+    "static/js/main.dda2f831.js"
   ]
 }
