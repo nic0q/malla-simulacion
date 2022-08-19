@@ -1,15 +1,15 @@
 {
-  "main.css": "/malla-simulacion/static/css/main.62d1b4c8.chunk.css",
-  "main.js": "/malla-simulacion/static/js/main.11876dbe.chunk.js",
-  "main.js.map": "/malla-simulacion/static/js/main.11876dbe.chunk.js.map",
-  "static/js/1.7ab2393a.chunk.js": "/malla-simulacion/static/js/1.7ab2393a.chunk.js",
-  "static/js/1.7ab2393a.chunk.js.map": "/malla-simulacion/static/js/1.7ab2393a.chunk.js.map",
-  "static/js/2.8e9ce942.chunk.js": "/malla-simulacion/static/js/2.8e9ce942.chunk.js",
-  "static/js/2.8e9ce942.chunk.js.map": "/malla-simulacion/static/js/2.8e9ce942.chunk.js.map",
-  "runtime~main.js": "/malla-simulacion/static/js/runtime~main.63d8d04b.js",
-  "runtime~main.js.map": "/malla-simulacion/static/js/runtime~main.63d8d04b.js.map",
-  "static/css/main.62d1b4c8.chunk.css.map": "/malla-simulacion/static/css/main.62d1b4c8.chunk.css.map",
-  "index.html": "/malla-simulacion/index.html",
-  "precache-manifest.e68b1d2f48baf6a0504131eabd99da5a.js": "/malla-simulacion/precache-manifest.e68b1d2f48baf6a0504131eabd99da5a.js",
-  "service-worker.js": "/malla-simulacion/service-worker.js"
+  "files": {
+    "main.css": "/malla-simulacion/static/css/main.be673b77.css",
+    "main.js": "/malla-simulacion/static/js/main.bcadc800.js",
+    "static/js/787.ddc39446.chunk.js": "/malla-simulacion/static/js/787.ddc39446.chunk.js",
+    "index.html": "/malla-simulacion/index.html",
+    "main.be673b77.css.map": "/malla-simulacion/static/css/main.be673b77.css.map",
+    "main.bcadc800.js.map": "/malla-simulacion/static/js/main.bcadc800.js.map",
+    "787.ddc39446.chunk.js.map": "/malla-simulacion/static/js/787.ddc39446.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be673b77.css",
+    "static/js/main.bcadc800.js"
+  ]
 }
