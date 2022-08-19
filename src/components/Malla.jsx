@@ -15,6 +15,7 @@ const COLORFULL_TYPES = {
   'TOP': 'bg-purple-500',
   'OPC': 'bg-yellow-400',
 }
+
 const NORMAL_COLORS = {
   'DISP': "bg-yellow-300",
   'APRO': "bg-[#68fd68]",
