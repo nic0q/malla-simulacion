@@ -123,7 +123,7 @@ export default function Malla(){
       }
     </div>
   }
-  return <div>
+  return <div className="w-max">
     <div className="text-white flex justify-end">      
       <button className="mx-3" onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state + 1})}>
       Cambiar aspecto
@@ -137,21 +137,21 @@ export default function Malla(){
       </div>
       </button>
     </div>
-  <div className="flex col text-center align-middle justify-center">
-    {Array(11).fill().map((_,nivel) => { nivel = nivel + 1
-      return <div key = {nivel.toString()}>
-        {(nivel+1)%2 === 0 ?
-        <div>
+    <div className="flex col text-center align-middle justify-center">
+      {Array(11).fill().map((_,nivel) => { nivel = nivel + 1
+        return <div key = {nivel.toString()}>
+          {(nivel+1)%2 === 0 ?
+          <div>
+            <br></br>
+            <BotonAnio handleClick={()=>anio_click(nivel.toString())} año = {(nivel-1)/2+1 === 6 ? "5/2" : (nivel-1)/2+1}/>
+          </div>
+          :<br></br>}
           <br></br>
-          <BotonAnio handleClick={()=>anio_click(nivel.toString())} año = {(nivel-1)/2+1 === 6 ? "5/2" : (nivel-1)/2+1}/>
+          <Nivel nivel={nivel.toString()}/>
         </div>
-        :<br></br>}
-        <br></br>
-        <Nivel nivel={nivel.toString()}/>
+        })
+      }
       </div>
-      })
-    }
-    </div>
-    <AvanceCarrera n_aprobadas={aprobados.length} n_total={ramos_civil.length}/>  
-    </div>
+      <AvanceCarrera n_aprobadas={aprobados.length} n_total={ramos_civil.length}/>  
+      </div>
 }
