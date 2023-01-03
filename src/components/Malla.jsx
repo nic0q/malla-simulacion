@@ -123,35 +123,32 @@ export default function Malla(){
       }
     </div>
   }
-  return <div className="w-max">
-    <div className="text-white flex justify-end">      
-      <button className="mx-3" onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state + 1})}>
-      Cambiar aspecto
-      <div className="border-2 border-white p-1 hover:bg-white hover:text-black">
-        {{0:"LOA 📘",1:"Verbose 🗣️",2: "Pride 🌈"}[colorfull]}
-      </div>
-      </button >
-      <button onClick={()=>{set_disponibles([]); set_aprobados([])}}>
-      <div className="border-2 border-white p-1 hover:bg-white hover:text-black">
-        Limpiar Malla
-      </div>
-      </button>
-    </div>
-    <div className="flex col text-center align-middle justify-center">
+  return <div className="flex bg-gray-800">
+
+  <div className="flex justify-center w-[90%] h-screen overflow-auto">
+    <div className="flex flex-row text-center align-middle w-full h-full">
       {Array(11).fill().map((_,nivel) => { nivel = nivel + 1
         return <div key = {nivel.toString()}>
-          {(nivel+1)%2 === 0 ?
-          <div>
-            <br></br>
-            <BotonAnio handleClick={()=>anio_click(nivel.toString())} año = {(nivel-1)/2+1 === 6 ? "5/2" : (nivel-1)/2+1}/>
-          </div>
-          :<br></br>}
-          <br></br>
           <Nivel nivel={nivel.toString()}/>
         </div>
         })
       }
-      </div>
-      <AvanceCarrera n_aprobadas={aprobados.length} n_total={ramos_civil.length}/>  
-      </div>
+    </div>
+  </div>
+  <div className="flex-col w-[10%] h-screen text-white ml-2">   
+    <div>
+    <button onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state + 1})}>
+    Cambiar aspecto
+    <div className="border-2 w-32 h-8 mb-1 border-white p-1 hover:bg-white hover:text-black">
+      {{0:"LOA 📘",1:"Verbose 🗣️",2: "Pride 🌈"}[colorfull]}
+    </div>
+    </button ></div> 
+    <div>
+    <button onClick={()=>{set_disponibles([]); set_aprobados([])}}>
+    <div className="border-2 w-32 h-8 border-white p-1 hover:bg-white hover:text-black">
+      Limpiar Malla
+    </div>
+    </button></div>
+  </div>
+  </div>
 }

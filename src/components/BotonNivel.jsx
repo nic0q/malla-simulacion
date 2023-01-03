@@ -23,5 +23,5 @@ export default function BotonNivel({nivel, handleClick}){
     }
     return str;
   }
-  return <p onClick={()=>handleClick(nivel)} className="bg-gray-500 w-36 h-10 mb-6 pt-2 text-white hover:bg-white hover:text-black">{convertToRoman(nivel)}</p>
+  return <p onClick={()=>handleClick(nivel)} className="bg-gray-500 w-36 h-10 mb-6 pt-2 text-white hover:bg-white hover:text-black cursor-pointer">{convertToRoman(nivel)}</p>
 }
