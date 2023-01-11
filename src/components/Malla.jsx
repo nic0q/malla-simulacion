@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 import BotonNivel from "./BotonNivel.jsx";
 import Ramo from "./Ramo.jsx"
-import BotonAnio from "./BotonAnio";
-import AvanceCarrera from "./AvanceCarrera";
+// import BotonAnio from "./BotonAnio";
+// import AvanceCarrera from "./AvanceCarrera";
 
 const COLORFULL_TYPES = {
   'MBI': 'bg-blue-500',
@@ -20,6 +20,7 @@ const NORMAL_COLORS = {
   'DISP': "bg-yellow-300",
   'APRO': "bg-[#68fd68]",
   'PEND': "bg-gray-300",
+  'PRE': "bg-pink-300"
 }
 const PRIDE_COLORS = {
   1:'bg-[#5D308F]',
@@ -77,6 +78,7 @@ const update_aprobados = (aprov, ramo) => {
 }
 export default function Malla(){
   const [disponibles, set_disponibles] = useState([])
+  const [prereqs, set_prereqs] = useState([])
   const [aprobados, set_aprobados] = useState([])
   const [colorfull, set_colorfull] = useState(0)
   // Funcion que actualiza la malla al hacer click en un ramo, ya se aprobando un ramo y abriendo ramos a raiz de la aprobacion
@@ -88,16 +90,20 @@ export default function Malla(){
   }
   // Función que actualiza el nivel entero de la malla, utilizando la función de ramo_click
   const nivel_click = (nivel) => {
+    const a = ramos_civil.filter(ramo => ramo.nivel === nivel)
+    console.log(a)
     ramos_civil.filter(ramo => ramo.nivel === nivel).map(ramo => ramo_click(ramo))
   }
-  const anio_click = (nivel) => {
-    const anioa = [nivel,(Number(nivel)+1).toString()]
-    nivel_click(anioa[0])
-    nivel_click(anioa[1])
-  }
-  const get_estado_ramo = (ramo, aprobados, disponibles) =>{
+  // const anio_click = (nivel) => {
+  //   const anioa = [nivel,(Number(nivel)+1).toString()]
+  //   nivel_click(anioa[0])
+  //   nivel_click(anioa[1])
+  // }
+  const get_estado_ramo = (ramo, aprobados, disponibles, prereqs) =>{
+    if(prereqs.includes(ramo.nombre)) return NORMAL_COLORS["PRE"]
     if(aprobados.includes(ramo.nombre)) return NORMAL_COLORS["APRO"]
     if(disponibles.includes(ramo.nombre) || !ramo.prereq.length) return NORMAL_COLORS["DISP"]
+    
   }
   const Nivel = ({nivel}) =>{
     return <div>
@@ -106,11 +112,13 @@ export default function Malla(){
       return ramo.nivel === nivel ?
         <Ramo
           handleClick = {()=>ramo_click(ramo)}
+          handleHover = {()=>set_prereqs(ramo.prereq)}
+          handleOut = {()=>set_prereqs([])}
           key = {ramo.abrev}
           // aprobados.includes(ramo.nombre) ? "bg-green-300": disponibles.includes(ramo.nombre) || !ramo.prereq.length ? "text-white" : "opacity-60"
           tipo = {colorfull === VERBOSE ?
             (COLORFULL_TYPES[ramo.tipo]) :
-              colorfull === LOA ? (get_estado_ramo(ramo, aprobados, disponibles) || NORMAL_COLORS["PEND"]) :
+              colorfull === LOA ? (get_estado_ramo(ramo, aprobados, disponibles, prereqs) || NORMAL_COLORS["PEND"]) :
                 colorfull === PRIDE ? (nivel % 2 === 0 ? PRIDE_COLORS[nivel/2] : PRIDE_COLORS[(((nivel-1)/2)+1)])
                 : ""}
           estado = {
@@ -136,13 +144,13 @@ export default function Malla(){
     </div>
   </div>
   <div className="flex-col w-[10%] h-screen text-white ml-2">   
-    <div>
+    {/* <div>
     <button onClick={()=>set_colorfull((state)=>{if(state === 2) return 0; else return state + 1})}>
     Cambiar aspecto
     <div className="border-2 w-32 h-8 mb-1 border-white p-1 hover:bg-white hover:text-black">
       {{0:"LOA 📘",1:"Verbose 🗣️",2: "Pride 🌈"}[colorfull]}
     </div>
-    </button ></div> 
+    </button ></div>  */}
     <div>
     <button onClick={()=>{set_disponibles([]); set_aprobados([])}}>
     <div className="border-2 w-32 h-8 border-white p-1 hover:bg-white hover:text-black">
